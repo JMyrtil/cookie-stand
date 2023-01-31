@@ -2,40 +2,45 @@
 
 console.log('hello');
 
-let cookieprofile = document.getElementById('Cookies');
-console.log(cookieprofile);
 
-let cookiearticle = document.createElement('article');
-
-cookieprofile.appendChild(cookiearticle);
-
-let cookieh3 = document.createElement('h3');
-cookieh3.textContent = 'Tasty'
-cookiearticle.appendChild(cookieh3);
-
-let time = ['6 am', '7 am', '8 am', '9 am', '10 am', '11 am', '12 pm', '1 pm', '2 pm', '3 pm', '4 pm', '5 pm', '6 pm', '7 pm',];
+let time = ['6 am', '7 am', '8 am', '9 am', '10 am', '11 am', '12 pm', '1 pm', '2 pm', '3 pm', '4 pm', '5 pm', '6 pm', '7 pm'];
 
 let seattle = {
   location: 'seattle',
   max: 25,
   min: 65,
   avg: 6.3,
-  avgNumbS: function () {
-    let ul = document.createElement('ul');
-    for (let i = 0; i < time[0].length; ++i); {
-      console.log(time);
-      let li = document.createElement('li');
-      li.textContent = time[0];
-      ul.appendChild(li);
-      cookiearticle.appendChild(ul);
-      return Math.floor(Math.random() * (this.max - this.min + 1) + this.min);
+  soldCookies: [],
+  dailyTotal: 0,
+  customer: function () {
+    return Math.floor(Math.random() * (this.max - this.min + 1) + this.min);
+  },
+  cookiesS: function () {
+    for (let i = 0; i < time.length; i++) {
+      let customerS = this.customer();
+      let cookiesSold = Math.ceil(customerS * this.avg);
+      console.log(cookiesSold);
+      this.soldCookies.push(cookiesSold);
+      this.dailyTotal += cookiesSold
     }
+  },
+
+  render: function () {
+    this.cookiesS();
+    let cookieprofile = document.getElementById('Cookies');
+    let ul = document.createElement('ul');
+    cookieprofile.appendChild(ul);
+    for (let i = 0; i < time.length; ++i) {
+      let li = document.createElement('li');
+      li.textContent = `${time[i]}: ${this.soldCookies[i]}`;
+      ul.appendChild(li);
+    }
+    let totalLi = document.createElement('li');
+    totalLi.textContent = `Total: ${this.dailyTotal}`;
+    ul.appendChild(totalLi)
   }
-
 }
-
-seattle.avgNumbS();
-
+seattle.render()
 
 // let tokyo = {
 //   location: 'tokyo',
