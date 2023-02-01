@@ -1,0 +1,31 @@
+table, td, th {
+  border: 1px solid;
+}
+
+table{
+  margin: 1rem;
+}
+
+td, th {
+  padding: 1rem;
+}
+
+thead th {
+  font-weight: bold;
+}
+
+tfoot {
+  background-color: rgba(red, green, blue, alpha);
+}
+
+p {
+margin-bottom: 1rem;
+}
+
+footer {
+padding: 1rem;
+}
+
+a {
+color: rgb(red, green, blue);
+}
