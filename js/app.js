@@ -155,15 +155,17 @@ let FooterRow = function () {
   let fr = document.createElement('th');
   fr.textContent = 'Hourly Total';
   footerRow.appendChild(fr);
+
+  let endTotal = 0
+
   for (let i = 0; i < time.length; i++) {
-    let endTotal = 0
     let cookieHour = 0
     for (let j = 0; j < allstore.length; j++) {
       let e = allstore[j].soldCookies[i];
       endTotal += e;
       // console.log(e);
-      cookieHour += endTotal;
-      console.log(cookieHour);
+      cookieHour += e;
+      console.log(endTotal);
       // for (let z = cookieHour; z = cookieHour; z++ ) {
       //   let a = z;
       //   console.log(a);
@@ -175,12 +177,13 @@ let FooterRow = function () {
     
     let cH = document.createElement('td');
     cH.textContent = cookieHour;
-    let fd = document.createElement('td');
-    fd.textContent = endTotal;
-    footerRow.appendChild(fd);
-    // footerRow.appendChild(cH);
-
+    
+    footerRow.appendChild(cH);
   };
+  let fd = document.createElement('td');
+  fd.textContent = endTotal;
+  footerRow.appendChild(fd);
+
   // let locationF = document.createElement('td');
   // footerRow.appendChild(locationF);
 
