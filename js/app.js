@@ -165,19 +165,19 @@ let FooterRow = function () {
       endTotal += e;
       // console.log(e);
       cookieHour += e;
-      console.log(endTotal);
+      // console.log(endTotal);
       // for (let z = cookieHour; z = cookieHour; z++ ) {
       //   let a = z;
       //   console.log(a);
       // };
-    
-      
-    
+
+
+
     }
-    
+
     let cH = document.createElement('td');
     cH.textContent = cookieHour;
-    
+
     footerRow.appendChild(cH);
   };
   let fd = document.createElement('td');
@@ -191,21 +191,100 @@ let FooterRow = function () {
 FooterRow();
 
 Area.prototype.renderTable = function () {
-
-
-
-
-
-
-
-
-
   // openTable.appendChild(headerRow)
   // openTable.appendChild(tr)
   // openTable.appendChild(footerRow)
 };
 Area.prototype.renderTable()
 
+
+let cookieform = document.querySelector('form');
+
+
+
+let handleSubmit = function (event) {
+
+  event.preventDefault();
+  console.log(event.target.sName.value);
+
+  let locationName = event.target.sName.value;
+  let locationMax = event.target.sMax.value;
+  let locationMin = event.target.sMin.value;
+  let locationAvg = event.target.sAvg.value;
+
+  let newArea = new Area(
+    locationName,
+    locationMax,
+    locationMin,
+    locationAvg
+  );
+
+  newArea.render();
+  allstore.push(newArea);
+
+  let BodyRow = function () {
+    // for (let i = 0; i < newArea; i++) {
+    let tr = document.createElement('tr');
+    areaBody.appendChild(tr);
+    let tdLocation = document.createElement('th');
+    tdLocation.textContent = locationName;
+    tr.appendChild(tdLocation);
+
+    for (let i = 0; i < time.length; i++) {
+      let td = document.createElement('td');
+      td.textContent = `${newArea.soldCookies[i]}`;
+      tr.appendChild(td)
+
+    };
+
+    let tabL = document.createElement('td');
+    tabL.textContent = newArea.dailyTotal;
+    tr.appendChild(tabL);
+
+
+    // };
+  };
+  BodyRow();
+
+  let prevTableFT = document.querySelector('tfoot > tr');
+  prevTableFT.remove();
+
+
+  // let FooterRow = function () {
+  //   let footerRow = document.createElement('tr');
+  //   areaFoot.appendChild(footerRow);
+  //   let fr = document.createElement('th');
+  //   fr.textContent = newArea.locationName;
+  //   footerRow.appendChild(fr);
+
+  //   let endTotal = 0
+
+  //   for (let i = 0; i < time.length; i++) {
+  //     let cookieHour = 0
+  //     for (let j = 0; j < allstore.length; j++) {
+  //       let e = allstore[j].soldCookies[i];
+  //       endTotal += e;
+  //       cookieHour += e;
+  //     }
+
+  //     let cH = document.createElement('td');
+  //     cH.textContent = cookieHour;
+
+  //     footerRow.appendChild(cH);
+  //   };
+  //   let fd = document.createElement('td');
+  //   fd.textContent = endTotal;
+  //   footerRow.appendChild(fd);
+
+  // };
+  FooterRow();
+
+
+
+
+};
+
+cookieform.addEventListener('submit', handleSubmit);
 
 
 
