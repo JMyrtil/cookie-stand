@@ -8,14 +8,16 @@ table{
 
 td, th {
   padding: 1rem;
+  background-color: aliceblue;
 }
 
 thead th {
   font-weight: bold;
+  background-color: aliceblue;
 }
 
 tfoot {
-  background-color: rgba(red, green, blue, alpha);
+  background-color: aliceblue;
 }
 
 p {
@@ -28,4 +30,8 @@ padding: 1rem;
 
 a {
 color: rgb(red, green, blue);
+}
+
+body {
+  background-color: beige;
 }
